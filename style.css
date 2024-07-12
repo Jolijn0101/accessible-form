@@ -67,6 +67,15 @@ textarea,
     display: block;
 }
 
+input,
+textarea {
+    font-family: 'Karla', sans-serif;
+    font-size: 1.125rem;
+    font-weight: 400;
+    line-height: 150%;
+    color: #2a4144;
+}
+
 @media screen and (min-width: 768px) {
     .name-wrapper,
     .query-type-container {
@@ -102,9 +111,21 @@ input[type='radio'] {
     position: absolute;
 }
 
+/* textarea */
 textarea {
     height: 240px;
     resize: none;
+}
+
+@media screen and (min-width: 768px) {
+    textarea {
+        height: 132px;
+    }
+}
+@media screen and (min-width: 1440px) {
+    textarea {
+        height: 105px;
+    }
 }
 
 /* checkbox */
