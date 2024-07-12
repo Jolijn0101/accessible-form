@@ -80,6 +80,7 @@ fieldset {
     border: none;
 }
 
+/* radio buttons */
 .radio-btn-wrapper {
     margin-top: 1rem;
     padding: 0px 27px;
@@ -88,7 +89,6 @@ fieldset {
     gap: 8px;
     position: relative;
 }
-
 input[type='radio'] {
     width: 20px;
     height: 20px;
@@ -102,6 +102,12 @@ input[type='radio'] {
     position: absolute;
 }
 
+textarea {
+    height: 240px;
+    resize: none;
+}
+
+/* checkbox */
 .checkbox-wrapper {
     display: flex;
     align-items: center;
@@ -110,10 +116,13 @@ input[type='radio'] {
 }
 input[type='checkbox'] {
     opacity: 0;
+    margin-left: 9px;
+    z-index: 100;
 }
 .visible-checkbox {
-    width: 18px;
-    height: 18px;
+    width: 22px;
+    height: 22px;
+    border: 2px solid white;
     position: absolute;
     background-image: url('assets/images/icon-checkbox.svg');
     margin-left: 5px;
@@ -121,11 +130,6 @@ input[type='checkbox'] {
 .checkbox-wrapper label {
     padding: 0 1rem;
     margin-left: 9px;
-}
-
-textarea {
-    height: 240px;
-    resize: none;
 }
 
 input[type='submit'] {
@@ -138,12 +142,49 @@ input[type='submit'] {
     font-family: 'Karla', sans-serif;
     font-size: 1.125rem;
     font-weight: 700;
+    transition: 0.5s;
+}
+
+/* hover & focus states */
+.outline:hover,
+.outline:focus,
+.radio-btn-wrapper:hover,
+.radio-btn-wrapper:focus-within {
+    outline: 2px solid#0c7d69;
+}
+
+input[type='submit']:hover,
+input[type='submit']:focus {
+    background-color: #063f36ff;
+    outline: none;
+}
+
+.radio-btn-wrapper:hover,
+.checkbox-wrapper label:hover,
+.input[type='submit'],
+.visible-checkbox {
+    cursor: pointer;
+}
+
+input[type='checkbox']:focus + .visible-checkbox {
+    border: 2px solid #0c7d69;
+}
+
+/* checked states */
+.radio-btn-wrapper:has(input:checked) {
+    background-color: #e0f1e8;
+}
+input[type='radio']:checked + .visible-radio-btn {
+    background-image: url('assets/images/icon-radio-selected.svg');
+}
+input[type='checkbox']:checked + .visible-checkbox {
+    background-image: url('assets/images/icon-checkbox-check.svg');
 }
 
 /* success-message */
-
 #success-message {
     position: absolute;
+    display: none;
     width: 100%;
     z-index: 100;
     top: 0;
