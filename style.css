@@ -53,8 +53,11 @@ input[type='text'],
 input[type='email'],
 textarea,
 fieldset {
-    margin: 8px 0px 24px 0px;
+    margin: 16px 0px 24px 0px;
     width: 100%;
+}
+fieldset {
+    margin-top: 0px;
 }
 
 input[type='text'],
@@ -98,6 +101,7 @@ fieldset {
     align-items: center;
     gap: 8px;
     position: relative;
+    font-size: 1.125rem;
 }
 input[type='radio'] {
     width: 20px;
