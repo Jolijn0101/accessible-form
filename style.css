@@ -53,7 +53,7 @@ input[type='text'],
 input[type='email'],
 textarea,
 fieldset {
-    margin: 16px 0px 24px 0px;
+    margin: 15px 0px 24px 0px;
     width: 100%;
 }
 fieldset {
