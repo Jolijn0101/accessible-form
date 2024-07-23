@@ -1,3 +1,4 @@
+// submit function
 document.querySelector('button').addEventListener('click', (event) => {
     // reset alertDiv before using again
     alertDivInActive();
@@ -30,6 +31,16 @@ document.querySelector('button').addEventListener('click', (event) => {
     if (document.querySelector('.alertDiv').classList.value.includes('alertDivActive') === false) {
         activateThankYouMss();
     }
+});
+
+// remove error messages
+document.querySelectorAll('input, textarea').forEach((input) => {
+    input.addEventListener('focus', (event) => {
+        input.ariaInvalid = 'false';
+        if (input.type === 'radio') {
+            document.querySelector('fieldset').ariaInvalid = 'false';
+        }
+    });
 });
 
 function alertDivActive() {
@@ -125,4 +136,3 @@ function activateThankYouMss() {
         document.querySelector('#success-message').style.display = 'none';
     }, 8000);
 }
-
