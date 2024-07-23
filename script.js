@@ -4,33 +4,27 @@ document.querySelector('button').addEventListener('click', (event) => {
     alertDivInActive();
     document.querySelector('.alertDiv').innerHTML = '';
 
-    //collect information from fname,lname,email and message
-    document.querySelectorAll('#fname, #lname, #email, #message').forEach((input) => {
+    // collect information from input and textarea and validate them
+    document.querySelectorAll('input, textarea').forEach((input) => {
         validateInput(input);
     });
-
-    // check if one of the radio buttons is checked
-    if (document.querySelector('#general-enquiry').checked === false && document.querySelector('#support-request').checked === false) {
-        //show alert for people with sight
-        document.querySelector('fieldset').ariaInvalid = 'true';
-        //create alert for screen readers
-        alertDivActive();
-        alertScreenreaders('radio');
-    }
-
-    // check if the checkbox is checked
-    if (document.querySelector('#checkbox').checked === false) {
-        //show alert for people with sight
-        document.querySelector('#checkbox').ariaInvalid = 'true';
-        //create alert for screen readers
-        alertDivActive();
-        alertScreenreaders('checkbox');
-    }
 
     // if the form doesn't have errors display the thank you message
     if (document.querySelector('.alertDiv').classList.value.includes('alertDivActive') === false) {
         activateThankYouMss();
     }
+});
+
+// validate when out of focus
+document.querySelectorAll('input, textarea').forEach((input) => {
+    input.addEventListener('focusout', (event) => {
+        // reset alertDiv before using again
+        alertDivInActive();
+        document.querySelector('.alertDiv').innerHTML = '';
+
+        // validate text fields
+        validateInput(input);
+    });
 });
 
 // remove error messages
@@ -67,6 +61,31 @@ function alertScreenreaders(input) {
 function validateInput(input) {
     // get the name of the current input field
     const nameField = document.querySelector(`label[for='${input.id}']`).innerText.slice(0, -1) + ' field';
+
+    //check if there is a option selected by the radio buttons
+    if (input.type === 'radio') {
+        // check if one of the radio buttons is checked
+        if (document.querySelector('#general-enquiry').checked === false && document.querySelector('#support-request').checked === false) {
+            //show alert for people with sight
+            document.querySelector('fieldset').ariaInvalid = 'true';
+            //create alert for screen readers
+            alertDivActive();
+            alertScreenreaders('radio');
+        }
+        return;
+    }
+
+    //check if the checkbox is selected
+    if (input.type === 'checkbox') {
+        if (input.checked === false) {
+            //show alert for people with sight
+            input.ariaInvalid = 'true';
+            //create alert for screen readers
+            alertDivActive();
+            alertScreenreaders('checkbox');
+        }
+        return;
+    }
 
     // check if the input field is empty
     if (input.value === '') {
